@@ -3,10 +3,10 @@
  * to the default theme. The accent color is darkblue.
  *
  * This theme is Copyright (C) 2012 Owen Versteeg, https://github.com/StereotypicalApps. It is MIT licensed.
- * reveal.js is Copyright (C) 2011-2012 Hakim El Hattab, http://hakim.se
+ * reveal.js is Copyright (C) 2011-2012 Hakim El Hattab, https://hakim.se
  */
-@import url(http://fonts.googleapis.com/css?family=Roboto:400,300,500);
-@import url(http://fonts.googleapis.com/css?family=Roboto+Slab:400,700);
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,300,500);
+@import url(https://fonts.googleapis.com/css?family=Roboto+Slab:400,700);
 /*********************************************
  * GLOBAL STYLES
  *********************************************/
@@ -53,6 +53,10 @@ body {
   color: #29648d;
 }
 
+/* fix for first slidewith background. */
+h2#ending-python2-compatibility-in-a-user-friendly-manner {
+    color: #cc0000;
+}
 
 .reveal.has-dark-background h1, .reveal.has-dark-background h2, .reveal.has-dark-background h3, .reveal.has-dark-background h4, .reveal.has-dark-background h5, .reveal.has-dark-background h6 {
   color: #fff; }
@@ -149,10 +153,9 @@ body {
 .reveal pre {
   display: block;
   position: relative;
-  width: 90%;
   margin: 2.5rem auto;
   text-align: left;
-  font-size: 1.0em;
+  font-size: 0.9em;
   font-family: monospace;
   line-height: 1.2em;
   word-wrap: break-word;
@@ -165,7 +168,6 @@ body {
   display: block;
   padding: 5px;
   overflow: auto;
-  max-height: 400px;
   word-wrap: normal;
   background: #3F3F3F;
   color: #DCDCDC; }
@@ -326,7 +328,7 @@ section.intro.past {
   background-repeat: no-repeat; }
 
 .reveal .slide-background.master01 {
-  background: url('data:image/svg+xml;utf8,<svg width="312" height="147" viewBox="0 0 312 147" xmlns="http://www.w3.org/2000/svg"><g fill="none"><path d="M311.8 147H104.36L208.08 43.28 311.78 147" fill="#47B8B2"/><path d="M238.46 73.66L311.8.32V147l-73.34-73.34" fill="#3D9ECC"/><path d="M104.36 147l51.86-51.86H52.5L.64 147h103.72" fill="#369096"/></g></svg>') bottom right, url('data:image/svg+xml;utf8,<svg width="156" height="208" viewBox="0 0 156 208" xmlns="http://www.w3.org/2000/svg"><g fill="none"><path d="M.1 207.15V-.28l103.7 103.72L.1 207.14" fill="#2D81B6"/><path d="M.1-.28h103.7L51.96 51.58.1-.28" fill="#47B8B2"/><path d="M155.67 51.58l-51.86 51.86-51.85-51.86L103.8-.28l51.87 51.86" fill="#3D9ECC"/></g></svg>') top left;
+  background: url('data:image/svg+xml;utf8,<svg width="312" height="147" viewBox="0 0 312 147" xmlns="https://www.w3.org/2000/svg"><g fill="none"><path d="M311.8 147H104.36L208.08 43.28 311.78 147" fill="#47B8B2"/><path d="M238.46 73.66L311.8.32V147l-73.34-73.34" fill="#3D9ECC"/><path d="M104.36 147l51.86-51.86H52.5L.64 147h103.72" fill="#369096"/></g></svg>') bottom right, url('data:image/svg+xml;utf8,<svg width="156" height="208" viewBox="0 0 156 208" xmlns="https://www.w3.org/2000/svg"><g fill="none"><path d="M.1 207.15V-.28l103.7 103.72L.1 207.14" fill="#2D81B6"/><path d="M.1-.28h103.7L51.96 51.58.1-.28" fill="#47B8B2"/><path d="M155.67 51.58l-51.86 51.86-51.85-51.86L103.8-.28l51.87 51.86" fill="#3D9ECC"/></g></svg>') top left;
   background-color: #1E5A96;
   background-repeat: no-repeat; }
 
@@ -334,7 +336,7 @@ section.intro.past {
   color: #1E5A96; }
 
 .reveal .slide-background.master02 {
-  background: url('data:image/svg+xml;utf8,<svg width="178" height="208" viewBox="0 0 178 208" xmlns="http://www.w3.org/2000/svg"><g fill="none"><path d="M177.84-.22V207.4L73.9 103.6 177.83-.23" fill="#1E5A96"/><path d="M104.33 73.19L30.83-.23h147l-73.5 73.4" fill="#238BCA"/><path d="M52.36 125.1L.38 73.2l51.98-51.92 51.97 51.9-51.97 51.9" fill="#3FA8E0"/></g></svg>') top right, url('data:image/svg+xml;utf8,<svg width="208" height="208" viewBox="0 0 208 208" xmlns="http://www.w3.org/2000/svg"><g fill="none"><path d="M.07-.22H207.5l-103.7 103.8L.06-.2" fill="#238BCA"/><path d="M.08 103.6V-.23l51.85 51.9-51.85 51.9" fill="#1E5A96"/><path d="M51.93 155.5L.08 207.4V103.6l51.85-51.92V155.5" fill="#3FA8E0"/></g></svg>') top left;
+  background: url('data:image/svg+xml;utf8,<svg width="178" height="208" viewBox="0 0 178 208" xmlns="https://www.w3.org/2000/svg"><g fill="none"><path d="M177.84-.22V207.4L73.9 103.6 177.83-.23" fill="#1E5A96"/><path d="M104.33 73.19L30.83-.23h147l-73.5 73.4" fill="#238BCA"/><path d="M52.36 125.1L.38 73.2l51.98-51.92 51.97 51.9-51.97 51.9" fill="#3FA8E0"/></g></svg>') top right, url('data:image/svg+xml;utf8,<svg width="208" height="208" viewBox="0 0 208 208" xmlns="https://www.w3.org/2000/svg"><g fill="none"><path d="M.07-.22H207.5l-103.7 103.8L.06-.2" fill="#238BCA"/><path d="M.08 103.6V-.23l51.85 51.9-51.85 51.9" fill="#1E5A96"/><path d="M51.93 155.5L.08 207.4V103.6l51.85-51.92V155.5" fill="#3FA8E0"/></g></svg>') top left;
   background-color: #3B7BBE;
   background-repeat: no-repeat; }
 
@@ -342,7 +344,7 @@ section.intro.past {
   color: #3B7BBE; }
 
 .reveal .slide-background.master03 {
-  background: url('data:image/svg+xml;utf8,<svg width="178" height="208" viewBox="0 0 178 208" xmlns="http://www.w3.org/2000/svg"><g fill="none"><path d="M177.84-.22V207.4L73.9 103.6 177.83-.23" fill="#3FA8E0"/><path d="M104.33 73.19L30.83-.23h147l-73.5 73.4" fill="#3B7BBE"/><path d="M52.36 125.1L.38 73.2l51.98-51.92 51.97 51.9-51.97 51.9" fill="#46BCC0"/></g></svg>') top right, url('data:image/svg+xml;utf8,<svg width="208" height="208" viewBox="0 0 208 208" xmlns="http://www.w3.org/2000/svg"><g fill="none"><path d="M.07-.22H207.5l-103.7 103.8L.06-.2" fill="#3FA8E0"/><path d="M.08 103.6V-.23l51.85 51.9-51.85 51.9" fill="#46BCC0"/><path d="M51.93 155.5L.08 207.4V103.6l51.85-51.92V155.5" fill="#3B7BBE"/></g></svg>') top left;
+  background: url('data:image/svg+xml;utf8,<svg width="178" height="208" viewBox="0 0 178 208" xmlns="https://www.w3.org/2000/svg"><g fill="none"><path d="M177.84-.22V207.4L73.9 103.6 177.83-.23" fill="#3FA8E0"/><path d="M104.33 73.19L30.83-.23h147l-73.5 73.4" fill="#3B7BBE"/><path d="M52.36 125.1L.38 73.2l51.98-51.92 51.97 51.9-51.97 51.9" fill="#46BCC0"/></g></svg>') top right, url('data:image/svg+xml;utf8,<svg width="208" height="208" viewBox="0 0 208 208" xmlns="https://www.w3.org/2000/svg"><g fill="none"><path d="M.07-.22H207.5l-103.7 103.8L.06-.2" fill="#3FA8E0"/><path d="M.08 103.6V-.23l51.85 51.9-51.85 51.9" fill="#46BCC0"/><path d="M51.93 155.5L.08 207.4V103.6l51.85-51.92V155.5" fill="#3B7BBE"/></g></svg>') top left;
   background-color: #238BCA;
   background-repeat: no-repeat; }
 
@@ -350,7 +352,7 @@ section.intro.past {
   color: #238BCA; }
 
 .reveal .slide-background.master04 {
-  background: url('data:image/svg+xml;utf8,<svg width="178" height="208" viewBox="0 0 178 208" xmlns="http://www.w3.org/2000/svg"><g fill="none"><path d="M177.84-.22V207.4L73.9 103.6 177.83-.23" fill="#238BCA"/><path d="M104.33 73.19L30.83-.23h147l-73.5 73.4" fill="#3FA8E0"/><path d="M52.36 125.1L.38 73.2l51.98-51.92 51.97 51.9-51.97 51.9" fill="#46BCC0"/></g></svg>') top right, url('data:image/svg+xml;utf8,<svg width="208" height="208" viewBox="0 0 208 208" xmlns="http://www.w3.org/2000/svg"><g fill="none"><path d="M.07-.22H207.5l-103.7 103.8L.06-.2" fill="#46BCC0"/><path d="M.08 103.6V-.23l51.85 51.9-51.85 51.9" fill="#238BCA"/><path d="M51.93 155.5L.08 207.4V103.6l51.85-51.92V155.5" fill="#3FA8E0"/></g></svg>') top left;
+  background: url('data:image/svg+xml;utf8,<svg width="178" height="208" viewBox="0 0 178 208" xmlns="https://www.w3.org/2000/svg"><g fill="none"><path d="M177.84-.22V207.4L73.9 103.6 177.83-.23" fill="#238BCA"/><path d="M104.33 73.19L30.83-.23h147l-73.5 73.4" fill="#3FA8E0"/><path d="M52.36 125.1L.38 73.2l51.98-51.92 51.97 51.9-51.97 51.9" fill="#46BCC0"/></g></svg>') top right, url('data:image/svg+xml;utf8,<svg width="208" height="208" viewBox="0 0 208 208" xmlns="https://www.w3.org/2000/svg"><g fill="none"><path d="M.07-.22H207.5l-103.7 103.8L.06-.2" fill="#46BCC0"/><path d="M.08 103.6V-.23l51.85 51.9-51.85 51.9" fill="#238BCA"/><path d="M51.93 155.5L.08 207.4V103.6l51.85-51.92V155.5" fill="#3FA8E0"/></g></svg>') top left;
   background-color: #2C97A6;
   background-repeat: no-repeat; }
 
@@ -358,7 +360,7 @@ section.intro.past {
   color: #2C97A6; }
 
 .reveal .slide-background.master05 {
-  background: url('data:image/svg+xml;utf8,<svg width="178" height="208" viewBox="0 0 178 208" xmlns="http://www.w3.org/2000/svg"><g fill="none"><path d="M177.84-.22V207.4L73.9 103.6 177.83-.23" fill="#2C97A6"/><path d="M104.33 73.19L30.83-.23h147l-73.5 73.4" fill="#61B44B"/><path d="M52.36 125.1L.38 73.2l51.98-51.92 51.97 51.9-51.97 51.9" fill="#46BCC0"/></g></svg>') top right, url('data:image/svg+xml;utf8,<svg width="208" height="208" viewBox="0 0 208 208" xmlns="http://www.w3.org/2000/svg"><g fill="none"><path d="M.07-.22H207.5l-103.7 103.8L.06-.2" fill="#46BCC0"/><path d="M.08 103.6V-.23l51.85 51.9-51.85 51.9" fill="#2C97A6"/><path d="M51.93 155.5L.08 207.4V103.6l51.85-51.92V155.5" fill="#61B44B"/></g></svg>') top left;
+  background: url('data:image/svg+xml;utf8,<svg width="178" height="208" viewBox="0 0 178 208" xmlns="https://www.w3.org/2000/svg"><g fill="none"><path d="M177.84-.22V207.4L73.9 103.6 177.83-.23" fill="#2C97A6"/><path d="M104.33 73.19L30.83-.23h147l-73.5 73.4" fill="#61B44B"/><path d="M52.36 125.1L.38 73.2l51.98-51.92 51.97 51.9-51.97 51.9" fill="#46BCC0"/></g></svg>') top right, url('data:image/svg+xml;utf8,<svg width="208" height="208" viewBox="0 0 208 208" xmlns="https://www.w3.org/2000/svg"><g fill="none"><path d="M.07-.22H207.5l-103.7 103.8L.06-.2" fill="#46BCC0"/><path d="M.08 103.6V-.23l51.85 51.9-51.85 51.9" fill="#2C97A6"/><path d="M51.93 155.5L.08 207.4V103.6l51.85-51.92V155.5" fill="#61B44B"/></g></svg>') top left;
   background-color: #69B978;
   background-repeat: no-repeat; }
 

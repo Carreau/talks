@@ -339,7 +339,7 @@ Pep 345 [specifies](https://www.python.org/dev/peps/pep-0345/#requires-python)
 
 Ok ! That's great can we use it ? And how to use it ?
 
-## Pypi
+## PyPI
 
 Pretty easy, we want pip to have access to that **before** downloading the
 sdist, because we don't want to download all the sourcedist just to discover

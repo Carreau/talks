@@ -1,2 +1,2 @@
 npm install -g reveal-md
-reveal-md -w pycon.md
+reveal-md -w pycon.md -m todo.js
