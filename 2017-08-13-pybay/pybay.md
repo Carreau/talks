@@ -1,10 +1,11 @@
 ---
-title: Building Bridges, not wals
+title: Building Bridges –  Stopping Python 2 support in libraries without damages
 separator: \n---- ?\n
 verticalSeparator: \n-- ?\n
-theme: pycon
+theme: pybay
 revealOptions:
     transition: 'slide'
+    slideNumber: 'c/t'
 ---
 <!-- .slide: data-background="./bridge.jpg" -->
 
@@ -22,23 +23,26 @@ Slides available at http://bit.ly/pycon2017-build-bridges
 
 # About Me
 
-IPython and Jupyter Core Dev  for 5 years. 
-
-Post Doc at UC Berkeley Institute for Data Science.
-
-github:@Carreau
-
-twitter:@mbussonn
-
---
-
-![](affiliation.png)
-
 -- 
+
+# I'm French
 
 ![http://onlinezap.blogspot.com.au/2011/03/cliche.html](french.jpg)
 
 Appologies for Ze téribleuh Frènch akkeucent. 
+
+-- 
+
+
+IPython and Jupyter Core Dev  for 5 years. 
+
+Post Doc at UC Berkeley Institute for Data Science.
+
+GitHub : @Carreau  – Twitter : @mbussonn
+
+
+![](affiliation.png)
+
 
 -- 
 
@@ -67,14 +71,15 @@ We migrated IPython to Python 3 only.
 
 We care about *all* of our users, Python 2 and 3 alike.
 
-We want to make the transition the least frustrating for users and dev.
+Make the transition the least frustrating for users and developers.
 
 -- 
 
 I'll be describing how we did this, how **you** can do it. How to do it right,
 potentially better than us. 
 
-Things we did wrong – and like to learn from **your** experience when you do it. 
+Things we did wrong – what you can learn from the mistake we did. 
+And we'd like to learn from **your** experience when you do it. 
 
 --
 
@@ -82,7 +87,7 @@ Things we did wrong – and like to learn from **your** experience when you do i
 
 The lessons we've learned are not specific a python2 to python3 transition. 
 
-Our talk applies to stopping support for any version (e.g., 2.6 or 3.3).
+This also applies to stopping support for any version (e.g., 2.6 or 3.3).
 
 ----
 
@@ -93,11 +98,21 @@ Our talk applies to stopping support for any version (e.g., 2.6 or 3.3).
 List of who is stopping Python 2 support when. 
 Resources on how to stop support with minimal frustration for users
 
+-- 
+
+# Why
+
+
+> Numpy won't drop Python 2 while libraries depending on it are still python 2 compatible
+
+<!-- -->
+
+> We'll drop Python 2 once Numpy has dropped Python 2 
+
 --
 
 ![p3s-list](p3s-list.png)
 
-Note: We should have text notes here to simplify reading this off.
 
 --
 
@@ -107,16 +122,21 @@ Timeline of Python 2 End of Life for various projects.
 
 Note: We should have text notes here to simplify reading this off.
 
+-- 
+
+# More informations
+
+[www.python3statement.org](http://www.python3statement.org/)
 ----
 
-# App vs Library. 
+# Application vs Library. 
 
 ## Application
 
 You deploy it and have complete control over, often standalone. 
- - Dependencies should likely be pinned, in requirements.txt
+ - Dependencies should likely be pinned, in `requirements.txt`
 
-## Library
+## Libraries
 
 Reusable components that are shared. 
  - Dependencies in setup.py, often "loose".
@@ -124,7 +144,7 @@ Reusable components that are shared.
 
 -- 
 
-A couple of talk on upgrading an Aplication: 
+A couple of talk on upgrading an Application: 
 
  - [PyCon 2017 Keynote – Python3@Instagram (Lisa Guo, Hui Ding)](https://www.youtube.com/watch?v=66XoCk79kjM) 
  - Bringing Python 3 to LinkedIn (Zvezdan Petkovic) <- Not Online yet, that was
@@ -147,7 +167,7 @@ A couple of talk on upgrading an Aplication:
 
 # Scratch your own itch
 
-We wanted to release IPython 6, the code base should be Python 3 only.
+We wanted to release IPython 6, to be Python 3 only.
 
 We care about Python 2 users, so if a Python 2 user runs
 
@@ -176,9 +196,9 @@ Let's go back to 2016.
 
 -- 
 
-Just use `$ pip install "ipython<6"` on Python 2
+## Just `$ pip install "ipython<6"` on Python 2
 
---
+
 
 - Users do not always read documentation before installing.
 - Scripts do not read documentation before installing. 
@@ -215,47 +235,23 @@ Use a package with virtually no-code that have conditional dependencies, and mov
 
 --
 
-## use a pip ~~bug~~ "Hidden Feature":
-
-```python
-# somewhere in pip
-_py_version_re = re.compile(r'-py([123]\.?[0-9]?)$')
-
-# somewhere else
-if is_tar_gz(file):
-    match = self._py_version_re.search(version)
-    if match:
-        version = version[:match.start()]
-        py_version = match.group(1)
-        if py_version != sys.version[:3]:
-            self._log_skipped_link(
-                link, 'Python version is incorrect')
-            return
-```
-
--- 
-
-## use a pip ~~bug~~ "Hidden Feature":
-
-You can publish `ipython-py3.3.tar.gz` and `ipython-py3.4.tar.gz` and
-`ipython-py3.5.tar.gz` and `ipython-py3.6.tar.gz` and `ipython-py3.7.tar.gz` to
-be future proof.
-
-But it does not work beyond Python 3.9... 
-
---
-
 As Raymond Hettinger would say if he is in the room
 
 
 > There must be a better way !
 
+
 ----
 
 # The new way: Python-Requires
+
+#### (Aka: make packaging great again)
+
+-- 
+
 <!--# (re)-Introducting `python_requires`-->
 
-Since December with pip 9.0.1, and setuptools 24.3:
+Since December with **pip 9.0.1+**, and setuptools 24.3:
 
 ```python
 # setup.py
@@ -296,126 +292,8 @@ Versions of pip < 9 ignore `requires-python`.
 
 This will result in installing incompatible versions.
 
--- 
-
-&nbsp;
-
 ---- 
 
-# Under the Hood
-
--- 
-
-## The old PEP
-
-[PEP 345](https://www.python.org/dev/peps/pep-0345/#requires-python)
-
-    Requires-Python
-    ===============
-
-    This field specifies the Python version(s) that the
-    distribution is guaranteed to be compatible with.
-
-    Version numbers must be in the format specified in
-    Version Specifiers.
-
-    Examples:
-
-        Requires-Python: 2.5
-        Requires-Python: >2.1
-
--- 
-
-Great! Now what? How do we use it?
-
--- 
-
-## Patch all the things!
-
-![allthethings](all2.jpg)
-
---
-
-## Build: Setuptools
-
-As of [setuptools 24.2](https://github.com/pypa/setuptools/pull/631/): 
-
-```python
-# setup.py
-
-setup(..., 
-    python_requires='>=3.4'
-)
-```
-
-Note: @xavfernandez for making that possible.
-
--- 
-
-## Upload: PyPI & Warehouse
-
-Updates the `release_files` table backing PyPI-legacy and Warehouse
-
--- 
-
-## Surface: PyPI
-
-[PEP 503](https://www.python.org/dev/peps/pep-0503/) defines `/simple/`
-repositories formats. 
-
-Require Python inside the `data-requires-python` attribute
-
--- 
-
-### view-source:https://pypi.python.org/simple/pip/
-
-```html
-<!DOCTYPE html><html><head><title>Links for pip</title></head><body><h1>Links for pip</h1>
-<a href="…/pip-8.0.0-py2.py3-none-any.whl" >pip-8.0.0-py2.py3-none-any.whl</a><br/>
-<a href="…/pip-6.0.4.tar.gz" >pip-6.0.4.tar.gz</a><br/>
-<a href="…/pip-0.3.1.tar.gz" >pip-0.3.1.tar.gz</a><br/>
-<a href="…/pip-1.0.1.tar.gz" >pip-1.0.1.tar.gz</a><br/>
-<a data-requires-python="&gt;=2.6,!=3.0.*" href="…/pip-9.0.1.tar.gz" >pip-9.0.1.tar.gz</a><br/>
-```
-
---
-
-## Install : Pip
-
-Pip 9+ checks `data-requires-python` before downloading 
-
--- 
-
-
-<!--## The pull requests on The GitHub.-->
-
-<!--- https://github.com/pypa/warehouse/pull/1513-->
-<!--- https://github.com/pypa/warehouse/pull/1448-->
-<!--- https://github.com/pypa/warehouse/pull/1448-->
-<!--- https://github.com/pypa/warehouse/pull/1268-->
-<!--- https://github.com/pypa/pypi-legacy/pull/524-->
-<!--- https://github.com/pypa/pypi-legacy/pull/506-->
-<!--- https://github.com/pypa/pip/pull/3877-->
-
-
-<!--Thanks PyPA team !-->
-
-
-## Tying it together 
-
-Setuptools, PyPI, Wareshouse and pip are updated and deployed!
-
---
-
-## Alternative packaging tool/service maintainers
-
-As of yesterday, PEP 518 implementation was merged 
-
-**`pyproject.toml` is now valid**!
-
-many tools/services are already compatible, e.g., `flit` and `twine`
-
---
 
 ## Call to all package maintainers
 
@@ -428,6 +306,29 @@ But, most of all:
 --
 
 # Tell users to update pip!
+
+
+-- 
+
+<table>
+  <tr>
+    <th></th>
+    <th>Python 2</th>
+    <th>Python 3</th>
+  </tr>
+  <tr>
+    <td>Old Pip</td>
+    <td style="color:red;">✗</td>
+    <td style="color:green;">✓</td>
+  </tr>
+  <tr>
+    <td>New Pip</td>
+    <td style="color:green;">✓<sup>*</sup></td>
+    <td style="color:green;">✓</td>
+  </tr>
+</table>
+
+
 
 ---- 
 
@@ -455,7 +356,7 @@ Some helpful principles to keep your users as happy as possible
 
 ## Tell everyone to `pip install`
 
-Update your documentation and scripts to use `pip install [-e] .`. 
+Update your documentation and scripts to use `pip install [-e] .` 
 
 Reiteration: Do not use `python setup.py <…>`;  
 it ignores `requires_python` and `pyproject.toml`
@@ -550,28 +451,13 @@ protecion in `__init__.py`</p>
 
 PyPI download stats are bigQuery:
 
-[https://bigquery.cloud.google.com/table/the-psf:pypi.downloads](https://bigquery.cloud.google.com/table/the-psf:pypi.downloads)
-
-```
-SELECT DAYOFYEAR(timestamp) as day,
-       COUNT(DAYOFYEAR(timestamp)) as total_downloads,
-       REGEXP_EXTRACT(details.python, r'^(\d+)') as details_python,
-       REGEXP_EXTRACT(file.version, r'^(\d+.\d+).\d+$') as version, 
-
-       file.project
-FROM (TABLE_DATE_RANGE([the-psf:pypi.downloads], 
-                TIMESTAMP('2017-04-10'), 
-                TIMESTAMP('2017-07-30')))
-WHERE file.project IN ('ipython')
-AND REGEXP_EXTRACT(file.version, r'^(\d+).\d+.\d+$') in ('6', '5')
-AND details.installer.name == 'pip'
-GROUP BY day, details_python, file.project, version
-```
 -- 
 
 # For IPython
 
 ![all the graphs](combined_ipython_graphs.png)
+
+-- 
 
 # Missing Data
 
@@ -630,5 +516,4 @@ Python 3 \u2661 Python 2
 
 Slides at: http://bit.ly/pycon2017-build-bridges
 
-@mpacer & @Mbussonn
 
