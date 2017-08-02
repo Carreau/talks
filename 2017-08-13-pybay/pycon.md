@@ -6,35 +6,49 @@ theme: pycon
 revealOptions:
     transition: 'slide'
 ---
-<!-- .slide: data-background="./cityscape.png" -->
+<!-- .slide: data-background="./bridge.jpg" -->
 
-# Building Bridges, not walls
+# Building Bridges
 
-## Ending Python2 compatibility in a user friendly manner
+## Stopping Python 2 support in libraries without damages
 
-M Bussonnier & M Pacer
+Matthias Bussonnier
+
+Saturday August 13 2017 – Fisher West
 
 Slides available at http://bit.ly/pycon2017-build-bridges
 
 ----
 
-# About us
+# About Me
 
-We have been working on the IPython and Jupyter projects for 
-5 and ~1 year. 
+IPython and Jupyter Core Dev  for 5 years. 
 
-github:@Carreau/twitter:@Mbussonn
+Post Doc at UC Berkeley Institute for Data Science.
 
-github:@mpacer/twitter:@mdpacer
+github:@Carreau
+
+twitter:@mbussonn
 
 --
 
 ![](affiliation.png)
 
 -- 
+
+![http://onlinezap.blogspot.com.au/2011/03/cliche.html](french.jpg)
+
+Appologies for Ze téribleuh Frènch akkeucent. 
+
+-- 
+
+
+
 ![](jupytercon.jpg)
 
 jupytercon.com – August 22-25; NYC
+
+(Contractually obliged to show you this)
 
 ----
 
@@ -55,7 +69,12 @@ We care about *all* of our users, Python 2 and 3 alike.
 
 We want to make the transition the least frustrating for users and dev.
 
-We'll be describing how we did this.
+-- 
+
+I'll be describing how we did this, how **you** can do it. How to do it right,
+potentially better than us. 
+
+Things we did wrong – and like to learn from **your** experience when you do it. 
 
 --
 
@@ -87,6 +106,42 @@ Note: We should have text notes here to simplify reading this off.
 Timeline of Python 2 End of Life for various projects.
 
 Note: We should have text notes here to simplify reading this off.
+
+----
+
+# App vs Library. 
+
+## Application
+
+You deploy it and have complete control over, often standalone. 
+ - Dependencies should likely be pinned, in requirements.txt
+
+## Library
+
+Reusable components that are shared. 
+ - Dependencies in setup.py, often "loose".
+
+
+-- 
+
+A couple of talk on upgrading an Aplication: 
+
+ - [PyCon 2017 Keynote – Python3@Instagram (Lisa Guo, Hui Ding)](https://www.youtube.com/watch?v=66XoCk79kjM) 
+ - Bringing Python 3 to LinkedIn (Zvezdan Petkovic) <- Not Online yet, that was
+   1h ago.
+
+-- 
+
+# Libraries
+
+ - Don't control the deploy environment.
+ - Still get issues from their users
+
+--
+
+## Some users know where you live...
+
+![Rick and morty screenshot of Meeseeks and destroy](Meeseeks_and_Drestroy.png)
 
 ----
 
@@ -409,7 +464,7 @@ it ignores `requires_python` and `pyproject.toml`
 
 ## Keep `setup.py` python 2 compatible. 
 
-If `setup.py` runs most probable reason: 
+If `setup.py` runs, most probable reason: 
 
 **pip < 9**. 
 
@@ -464,9 +519,66 @@ and above is required.
 
 ----
 
-# Results
+# Summary
+
+<table>
+  <tr>
+    <th></th>
+    <th>Python 2</th>
+    <th>Python 3</th>
+  </tr>
+  <tr>
+    <td>Old Pip</td>
+    <td style="color:orange;">⚠</td>
+    <td style="color:green;">✓</td>
+  </tr>
+  <tr>
+    <td>New Pip</td>
+    <td style="color:green;">✓<sup>*</sup></td>
+    <td style="color:green;">✓</td>
+  </tr>
+</table>
+
+<p><span style="color:orange;">⚠</span>Meaningfull warning: Pip out of date</p>
+<p><span style="color:green;"><sup>`*`</sup></span> Unless editable install, but
+protecion in `__init__.py`</p>
+
+
+----
+
+# See the Results
+
+PyPI download stats are bigQuery:
+
+[https://bigquery.cloud.google.com/table/the-psf:pypi.downloads](https://bigquery.cloud.google.com/table/the-psf:pypi.downloads)
+
+```
+SELECT DAYOFYEAR(timestamp) as day,
+       COUNT(DAYOFYEAR(timestamp)) as total_downloads,
+       REGEXP_EXTRACT(details.python, r'^(\d+)') as details_python,
+       REGEXP_EXTRACT(file.version, r'^(\d+.\d+).\d+$') as version, 
+
+       file.project
+FROM (TABLE_DATE_RANGE([the-psf:pypi.downloads], 
+                TIMESTAMP('2017-04-10'), 
+                TIMESTAMP('2017-07-30')))
+WHERE file.project IN ('ipython')
+AND REGEXP_EXTRACT(file.version, r'^(\d+).\d+.\d+$') in ('6', '5')
+AND details.installer.name == 'pip'
+GROUP BY day, details_python, file.project, version
+```
+-- 
+
+# For IPython
 
 ![all the graphs](combined_ipython_graphs.png)
+
+# Missing Data
+
+How many users on **Python 2** have a **new version of pip** and are **not
+upgrading**.
+
+- No new release of IPython and `pip install --upgrade`
 
 -- 
 
