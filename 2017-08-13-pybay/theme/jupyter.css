@@ -5,46 +5,70 @@
  * This theme is Copyright (C) 2012 Owen Versteeg, https://github.com/StereotypicalApps. It is MIT licensed.
  * reveal.js is Copyright (C) 2011-2012 Hakim El Hattab, https://hakim.se
  */
-@import url(https://fonts.googleapis.com/css?family=Roboto:400,300,500);
-@import url(https://fonts.googleapis.com/css?family=Roboto+Slab:400,700);
+
 /*********************************************
  * GLOBAL STYLES
  *********************************************/
 
+@import "./darcula.css";
 
 :root {
-  --blue-pybay: #29648d;
-  --yellow-pybay : #fcce3a
+  --jupyter-orange: #F37626;
+  --jupyter-dark-orange: #d25200;
+  --jupyter-grey-0:  #2c2c2c;
+  --jupyter-grey-I:  #4d4d4d;
+  --jupyter-grey-II: #616161;
+  --jupyter-grey-III: #757575;
+  --jupyter-grey-IV: #9e9e9e;
 }
 
+
+
 body {
-  background-color: #fff;
+  background-color: var(--jupyter-grey-0);
   counter-reset: section; 
+  color: white;
   }
 
 .reveal {
-  font-family: 'Open Sans', "Helvetica", "Roboto", sans-serif;
+  font-family: 'Myriad Pro', "Helvetica Neue", sans-serif;
   font-size: 2rem;
   font-weight: 300;
-  color: #444; }
+  color: white; }
 
 
-.slides::before {
+.slide-background:before {
     content: "";
-    position: absolute;
-    top: 40vh; 
-    left: -10vw;
-    width: 100%; 
-    height: 50%;  
-    opacity: 0.1; 
+    position: fixed;
+    left:  55vw;
+    min-width: 80vw; 
+    max-width: 120vw; 
+    min-height: 80vh;  
+    max-height: 120vh;  
+    opacity: 0.05; 
     z-index: -1;
-    background-image: url("../pybaylogo.png");
+    background-image: url("greylogo.png");
     background-repeat: no-repeat;
     background-size: contain;
 }
 
-.reveal.has-dark-background {
-  color: #fff; }
+.reveal .slide-background.jupyter-light {
+    color: var(--jupyter-grey-I); 
+    background-color: white;
+}
+
+.jupyter-light.slide-background:before {
+    color: var(--jupyter-grey-I); 
+    background-image: url("colorlogo.png");
+    background-color: white;
+}
+
+.reveal .jupyter-light , .reveal .jupyter-light h2{
+  color: var(--jupyter-grey-I); 
+}
+
+
+
 
 ::selection {
   color: #fff;
@@ -61,8 +85,7 @@ body {
  *********************************************/
 .reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6 {
   margin: 2.5rem 0 2.5rem 0;
-  color: #fcce3a;
-  font-family: 'Open Sans', "Helvetica", "Roboto", "Roboto Slab", serif;
+  color: white;
   line-height: 1.2;
   letter-spacing: normal;
   text-transform: none;
@@ -70,7 +93,7 @@ body {
   word-wrap: break-word; }
 
 .reveal h1,  .reveal h3,  .reveal h5 {
-  color: var(--blue-pybay);
+  color: var(--jupyter-orange);
 }
 
 /* fix for first slidewith background. */
@@ -98,14 +121,16 @@ body {
  *********************************************/
 .reveal p {
   margin: 2.5rem 0;
-  line-height: 1.3; }
+  line-height: 1.3; 
+  font-family: "Helvetica Neue";
+  }
 
 /* Ensure certain elements are never larger than the slide itself */
 .reveal img,
 .reveal video,
 .reveal iframe {
-  max-height: 60vh;
-  max-width: 60vw;
+  max-height: 50vh;
+  max-width: 60vh;
   width: auto;
   height: auto;
 }
@@ -115,8 +140,8 @@ body {
 }
 .reveal strong,
 .reveal b {
-  font-weight: bold; 
-  color: var(--yellow-pybay);
+  font-weight: 400; 
+  color: var(--jupyter-orange);
 }
 
 .reveal em {
@@ -133,7 +158,8 @@ body {
   list-style-type: decimal; }
 
 .reveal ul {
-  list-style-type: disc; }
+  list-style-type: circle; 
+  }
 
 .reveal ul ul {
   list-style-type: square; }
@@ -231,7 +257,7 @@ body {
  * LINKS
  *********************************************/
 .reveal a {
-  color: #333;
+  color: var(--jupyter-orange);
   text-decoration: none;
   background-image: linear-gradient(to bottom, transparent 50%, rgba(0, 0, 0, 0.3) 50%);
   background-repeat: repeat-x;
@@ -242,12 +268,13 @@ body {
   transition: color .15s ease; }
 
 .reveal a:hover {
-  color: #111;
+  color: var(--jupyter-dark-orange);
   text-shadow: none;
   border: none; }
 
 .reveal.has-dark-background a {
-  color: #eee;
+  color: var(--jupyter-dark-orange);
+  text-decoration: var(--jupyter-dark-orange);
   background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0.3) 50%); }
 
 .reveal.has-dark-background a:hover {
@@ -281,24 +308,24 @@ body {
  *********************************************/
 .reveal .controls div.navigate-left,
 .reveal .controls div.navigate-left.enabled {
-  border-right-color: #fcce3a; }
+  border-right-color: var(--jupyter-orange); }
 
 .reveal .controls div.navigate-right,
 .reveal .controls div.navigate-right.enabled {
-  border-left-color: #fcce3a; }
+  border-left-color: var(--jupyter-orange); }
 
 .reveal .controls div.navigate-up,
 .reveal .controls div.navigate-up.enabled {
-  border-bottom-color: #fcce3a; }
+  border-bottom-color: var(--jupyter-orange); }
 
 .reveal .controls div.navigate-down,
 .reveal .controls button .navigate-down{
-  border-top-color: #fcce3a;!important }
+  border-top-color: var(--jupyter-orange);!important }
 
-.reveal .controls .navigate-left  { border-right-color: #fcce3a;!important}
-.reveal .controls .navigate-right { border-left-color: #fcce3a;!important}
-.reveal .controls .navigate-up   { border-bottom-color: #fcce3a;!important}
-.reveal .controls .navigate-down { border-top-color: #fcce3a;!important}
+.reveal .controls .navigate-left  { border-right-color:var(--jupyter-orange);!important}
+.reveal .controls .navigate-right { border-left-color: var(--jupyter-orange);!important}
+.reveal .controls .navigate-up   { border-bottom-color: var(--jupyter-orange);!important}
+.reveal .controls .navigate-down { border-top-color: var(--jupyter-orange);!important}
 
 .reveal .controls div.navigate-left.enabled:hover {
   border-right-color: #111; }
@@ -319,7 +346,7 @@ body {
   background: rgba(0, 0, 0, 0.2); }
 
 .reveal .progress span {
-  background: #fcce3a;
+  background: var(--jupyter-orange);
   -webkit-transition: width 800ms cubic-bezier(0.26, 0.86, 0.44, 0.985);
   -moz-transition: width 800ms cubic-bezier(0.26, 0.86, 0.44, 0.985);
   transition: width 800ms cubic-bezier(0.26, 0.86, 0.44, 0.985); }
@@ -328,7 +355,7 @@ body {
  * SLIDE NUMBER
  *********************************************/
 .reveal .slide-number {
-  color: #fcce3a; }
+  color: var(--jupyter-orange); }
 
 section.intro.past {
   display: block !important; }
@@ -336,7 +363,7 @@ section.intro.past {
 .reveal .intro h1:before, .reveal .intro h2:before, .reveal .intro h3:before {
   counter-increment: section;
   content: counter(section);
-  background-color: white;
+  background-color: var(--jupyter-grey-0);
   display: table;
   margin: 0 auto 40px;
   border-radius: 50%;
@@ -350,12 +377,11 @@ section.intro.past {
 
 .reveal q, .reveal blockquote {
     quotes: none;
-    color: #6d6d6d;
+    background-color: var(--jupyter-grey-IV);
     quotes: '\201C' '\201D';
 }
 
 blockquote:before {
-  color: var(--yellow-pybay);
   content: open-quote;
   float:left;
   font-size: 4em;
@@ -366,7 +392,6 @@ blockquote:before {
 }
 
 blockquote:after {
-  color: var(--blue-pybay);
   float:right;
   content: close-quote;
   font-size: 4em;

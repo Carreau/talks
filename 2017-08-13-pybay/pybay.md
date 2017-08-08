@@ -2,10 +2,12 @@
 title: Building Bridges –  Stopping Python 2 support in libraries without damages
 separator: \n---- ?\n
 verticalSeparator: \n-- ?\n
-theme: pybay
+theme:  pybay
+highlightTheme : tomorrow
 revealOptions:
     transition: 'slide'
     slideNumber: 'c/t'
+
 ---
 <!-- .slide: data-background="./bridge.jpg" -->
 
@@ -52,7 +54,6 @@ GitHub : @Carreau  – Twitter : @mbussonn
 
 jupytercon.com – August 22-25; NYC
 
-(Contractually obliged to show you this)
 
 ----
 
@@ -100,16 +101,6 @@ Resources on how to stop support with minimal frustration for users
 
 -- 
 
-# Why
-
-
-> Numpy won't drop Python 2 while libraries depending on it are still python 2 compatible
-
-<!-- -->
-
-> We'll drop Python 2 once Numpy has dropped Python 2 
-
---
 
 ![p3s-list](p3s-list.png)
 
@@ -122,6 +113,18 @@ Timeline of Python 2 End of Life for various projects.
 
 Note: We should have text notes here to simplify reading this off.
 
+--
+
+# Why
+
+
+> Numpy won't drop Python 2 while libraries depending on it are still python 2 compatible
+
+<!-- -->
+
+> We'll drop Python 2 once Numpy has dropped Python 2 
+
+
 -- 
 
 # More informations
@@ -129,7 +132,7 @@ Note: We should have text notes here to simplify reading this off.
 [www.python3statement.org](http://www.python3statement.org/)
 ----
 
-# Application vs Library. 
+# Application vs Library
 
 ## Application
 
@@ -155,7 +158,13 @@ A couple of talk on upgrading an Application:
 # Libraries
 
  - Don't control the deploy environment.
- - Still get issues from their users
+ - Still get issues from users
+
+We want to:
+
+ - Keep a wide compatibility range
+ - Keep users happy
+ - Minimise work for developers
 
 --
 
@@ -177,6 +186,12 @@ it should install the latest version of IPython 5, not IPython 6!
 
 --
 
+# Keep a LTS Branch
+
+![](ForkGraph.png)
+
+--
+
 ## Core of the problem
 
 ```bash
@@ -187,6 +202,9 @@ $ python
 >>> import IPython
 SyntaxWarningErrorError("I Just don't like you.")
 ```
+-- 
+
+## What can we do about that ? 
 
 ----
 
@@ -214,6 +232,11 @@ Internet.
 
 Import names different from package name is also a bit tricky to explain
 sometime.
+
+
+(you meant `pip install jinja2` not `pip install jinja`)
+
+<!-- .element: class="fragment" data-fragment-index="1" -->
 
 --
 
@@ -251,7 +274,7 @@ As Raymond Hettinger would say if he is in the room
 
 <!--# (re)-Introducting `python_requires`-->
 
-Since December with **pip 9.0.1+**, and setuptools 24.3:
+Since December with **pip 9.0.1+**, and **setuptools 24.3**:
 
 ```python
 # setup.py
@@ -300,12 +323,27 @@ This will result in installing incompatible versions.
 * Use tools and services that respect Require-Python
 	* pip 9+
 	* setuptools >24.2
+&nbsp;
+<!--  - -->
 
-But, most of all: 
+* Tag your package with `requires_python` 
+<!-- .element: class="fragment" data-fragment-index="1" -->
+(That's also valid if you do `requires_python<3`, or `requires_python>2.2`)
+<!-- .element: class="fragment" data-fragment-index="2" -->
 
 --
 
 # Tell users to update pip!
+
+* Ask your users to upgrade
+<!-- .element: class="fragment" data-fragment-index="2" -->
+
+* Remind your users to upgrade
+<!-- .element: class="fragment" data-fragment-index="3" -->
+
+* Make sure your users upgrade. 
+<!-- .element: class="fragment" data-fragment-index="4" -->
+
 
 
 -- 
@@ -342,15 +380,19 @@ Some helpful principles to keep your users as happy as possible
 
 1. Update your documentation, CIs, and scripts to use `pip`.
 
-2. Keep `setup.py` and `__init__.py` python 2 compatible,  
-   but catch errors early. 
+2. Communicate, Communicate, Communicate: Blog, twitter...
 
    <!-- .element: class="fragment" data-fragment-index="1" -->
 
-3. For clear error messages in complicated situations,   
-   use multiple lines.
+3. Keep `setup.py` and `__init__.py` python 2 compatible,  
+   but catch errors early. 
 
    <!-- .element: class="fragment" data-fragment-index="2" -->
+
+4. For clear error messages in complicated situations,   
+   use multiple lines.
+
+   <!-- .element: class="fragment" data-fragment-index="3" -->
 
 --
 
@@ -359,10 +401,16 @@ Some helpful principles to keep your users as happy as possible
 Update your documentation and scripts to use `pip install [-e] .` 
 
 Reiteration: Do not use `python setup.py <…>`;  
-it ignores `requires_python` and `pyproject.toml`
+it ignores `requires_python`
 
 -- 
 
+## Communicate
+
+Let it be know to your community what your intentions are. Do not let people be
+surprised. Hopefully they will be prepared.
+
+--
 ## Keep `setup.py` python 2 compatible. 
 
 If `setup.py` runs, most probable reason: 
@@ -442,29 +490,19 @@ and above is required.
 
 <p><span style="color:orange;">⚠</span>Meaningfull warning: Pip out of date</p>
 <p><span style="color:green;"><sup>`*`</sup></span> Unless editable install, but
-protecion in `__init__.py`</p>
-
+protection in `__init__.py`</p>
 
 ----
 
-# See the Results
+# You know the difference between theory and practice ? 
 
-PyPI download stats are bigQuery:
+In theory it's the same.
 
--- 
+   <!-- .element: class="fragment" data-fragment-index="1" -->
 
-# For IPython
+----
 
-![all the graphs](combined_ipython_graphs.png)
-
--- 
-
-# Missing Data
-
-How many users on **Python 2** have a **new version of pip** and are **not
-upgrading**.
-
-- No new release of IPython and `pip install --upgrade`
+# Result for IPython
 
 -- 
 
@@ -484,7 +522,54 @@ Remember: don't use `python setup.py`!
 when I upgrade pip it works.
 
 Remember: upgrade `pip`!
+
+(This also tell us not to trust what users are saying)
+   <!-- .element: class="fragment" data-fragment-index="1" -->
 ---- 
+
+
+# Ask the numbers !
+
+--
+
+PyPI download stats are bigQuery
+
+![all the graphs](download_5_download_6.png)
+
+-- 
+
+# Missing Data
+
+How many users on **Python 2** have a **new version of pip** and are **not
+upgrading**.
+
+- No new release of IPython and `pip install --upgrade`
+
+---- 
+
+# Migration tips
+
+![](ForkGraph.png)
+
+-- 
+
+**Resist** the urge to **delete code** if you have an LTS.
+- Backport merges will conflict otherwise
+
+-- 
+
+Release a **Patch** version with **Zero** source change.
+- Observe the change in number on PyPI
+
+-- 
+
+Tell user to pin with **`<Major`** not **`==Major.Minor`**
+- Or updating LTS will be painful.
+
+
+
+
+--
 
 # Conclusions
 
