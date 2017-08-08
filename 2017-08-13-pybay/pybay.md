@@ -532,18 +532,61 @@ Remember: upgrade `pip`!
 
 --
 
-PyPI download stats are bigQuery
+## PyPI download stats on BigQuery
+
+Month Before release ~65% using new pip.
+
+-- 
 
 ![all the graphs](download_5_download_6.png)
 
 -- 
+
+## Python 3 adoption of new release
+
+![](2-Python3-adoption.png)
+
+-- 
+
+## Python 2 adoption of new release
+
+![](3-Python2-adoption.png)
+
+--
+
+Pip 9+ does not download IPython 6.0 on Python 2 ! 
+
+Why the big download peek if the pip ratio was ~65% new pip ?
+
+-- 
+
+
+![](4-pip-breakdown.png)
+
+--
 
 # Missing Data
 
 How many users on **Python 2** have a **new version of pip** and are **not
 upgrading**.
 
-- No new release of IPython and `pip install --upgrade`
+Fix by releasing a dummy version of the python 2 compatible version with no
+code change. Thus both Python 2 and 3 user should upgrade.
+
+-- 
+
+
+
+## Releasing 2 verisons at once
+
+![](5-release-of-54-and-61.png)
+
+-- 
+
+![](6-minor_download_do_5x_pin.png)
+
+:-(  Some people now have 5.3 Pinned.
+
 
 ---- 
 
@@ -553,23 +596,33 @@ upgrading**.
 
 -- 
 
-**Resist** the urge to **delete code** if you have an LTS.
-- Backport merges will conflict otherwise
-
--- 
-
 Release a **Patch** version with **Zero** source change.
 - Observe the change in number on PyPI
 
+
 -- 
 
-Tell user to pin with **`<Major`** not **`==Major.Minor`**
-- Or updating LTS will be painful.
+Have **good** error messages telling how to fix things, nto why. 
+  - Upgrade pip , or
+  - pin with `ipython<6`
+
+  (or compatible with: `ipython~=5.1` )
+  
+   <!-- .element: class="fragment" data-fragment-index="1" -->
+
+-- 
+
+Comunicate in advance
+
+-- 
+
+## Practical tips for **after** the migration
+
+**Resist** the urge to **delete code** if you have an LTS.
+- Backport merges will conflict otherwise
 
 
-
-
---
+-- 
 
 # Conclusions
 
