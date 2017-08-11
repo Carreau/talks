@@ -17,7 +17,7 @@ revealOptions:
 
 Matthias Bussonnier
 
-Saturday August 13 2017 – Fisher West
+PyBay – Saturday August 13 2017 – Fisher West
 
 Slides available at http://bit.ly/pycon2017-build-bridges
 
@@ -244,7 +244,7 @@ sometime.
 
 Ok-ish for Pure-Python packages.
 
-Many downstream distribution requires sdist.
+Many downstream distributions requires (or really like) sdists.
 
 --
 
@@ -400,14 +400,14 @@ Some helpful principles to keep your users as happy as possible
 
 Update your documentation and scripts to use `pip install [-e] .` 
 
-Reiteration: Do not use `python setup.py <…>`;  
-it ignores `requires_python`
+Reiteration: Do not use `python setup.py <...>`;  
+it ignores `requires_python` for dependencies.
 
 -- 
 
 ## Communicate
 
-Let it be know to your community what your intentions are. Do not let people be
+Let it be known to your community what your intentions are. Do not let people be
 surprised. Hopefully they will be prepared.
 
 --
@@ -568,7 +568,7 @@ Why the big download peek if the pip ratio was ~65% new pip ?
 # Missing Data
 
 How many users on **Python 2** have a **new version of pip** and are **not
-upgrading**.
+upgrading**?
 
 Fix by releasing a dummy version of the python 2 compatible version with no
 code change. Thus both Python 2 and 3 user should upgrade.
@@ -577,7 +577,7 @@ code change. Thus both Python 2 and 3 user should upgrade.
 
 
 
-## Releasing 2 verisons at once
+## Releasing 2 versions at once
 
 ![](5-release-of-54-and-61.png)
 
@@ -602,8 +602,8 @@ Release a **Patch** version with **Zero** source change.
 
 -- 
 
-Have **good** error messages telling how to fix things, nto why. 
-  - Upgrade pip , or
+Have **good** error messages telling how to fix things, not why it failed. 
+  - Upgrade pip, or
   - pin with `ipython<6`
 
   (or compatible with: `ipython~=5.1` )
