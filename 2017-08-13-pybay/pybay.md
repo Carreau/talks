@@ -19,7 +19,7 @@ Matthias Bussonnier
 
 PyBay – Saturday August 13 2017 – Fisher West
 
-Slides available at http://bit.ly/pycon2017-build-bridges
+Slides available at http://bit.ly/pybay-2017
 
 ----
 
@@ -36,14 +36,12 @@ Appologies for Ze téribleuh Frènch akkeucent.
 -- 
 
 
-IPython and Jupyter Core Dev  for 5 years. 
-
-Post Doc at UC Berkeley Institute for Data Science.
-
-GitHub : @Carreau  – Twitter : @mbussonn
+Post Doc, IPython and Jupyter Core Dev
 
 
-![](affiliation.png)
+<img src='affiliation.png' style='max-height:45vh'>
+
+GitHub : [@Carreau](https://github.com/carreau)  – Twitter : [@mbussonn](https://twitter.com/mbussonn)
 
 
 -- 
@@ -134,10 +132,13 @@ Note: We should have text notes here to simplify reading this off.
 
 # Application vs Library
 
+-- 
+
 ## Application
 
 You deploy it and have complete control over, often standalone. 
  - Dependencies should likely be pinned, in `requirements.txt`
+-- 
 
 ## Libraries
 
@@ -652,6 +653,6 @@ Python 3 \u2661 Python 2
 
 (that's a ♡) <!-- .element: class="fragment" data-fragment-index="1" -->
 
-Slides at: http://bit.ly/pycon2017-build-bridges
+Slides at: http://bit.ly/pybay-2017
 
 
