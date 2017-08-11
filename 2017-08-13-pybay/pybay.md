@@ -19,7 +19,7 @@ Matthias Bussonnier
 
 PyBay – Saturday August 13 2017 – Fisher West
 
-Slides available at http://bit.ly/pybay-2017
+Slides available at http://bit.ly/pybay-2017 <img src='qr.png' style='width:14vw;position:absolute; left:-90px; bottom:-90px;'>
 
 ----
 
@@ -653,6 +653,8 @@ Python 3 \u2661 Python 2
 
 (that's a ♡) <!-- .element: class="fragment" data-fragment-index="1" -->
 
+-- 
+
+![qr.png](qr.png)
+
 Slides at: http://bit.ly/pybay-2017
-
-
