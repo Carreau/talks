@@ -655,6 +655,10 @@ Python 3 \u2661 Python 2
 
 -- 
 
-![qr.png](qr.png)
+<img src='qr.png' style='max-height:40vh;'>
 
 Slides at: http://bit.ly/pybay-2017
+
+Source material:
+
+[https://github.com/Carreau/talks/tree/master/2017-08-13-pybay](https://github.com/Carreau/talks/tree/master/2017-08-13-pybay)

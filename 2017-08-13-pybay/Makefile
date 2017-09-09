@@ -7,4 +7,6 @@ build:
 	cp *.png *.jpg docs/
 watch: build
 	reveal-md -w pybay.md 
+pdf:
+	reveal-md pybay.md --print slides.pdf
 
