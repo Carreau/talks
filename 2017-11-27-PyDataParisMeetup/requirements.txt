@@ -1,0 +1,6 @@
+rpy2
+numpy
+cffi_magic
+fortran-magic
+matplotlib
+cython
