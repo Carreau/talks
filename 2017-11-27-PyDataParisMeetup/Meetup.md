@@ -14,13 +14,15 @@ revealOptions:
 
 ## Jupyter and the IPython kernel, hidden and awaiting implementation features
 
----
+-- 
 
 # About me
 
 Matthias Bussonnier – University of California, Berkeley Institute Data Science 
 
 @mbussonn/@carreau
+
+-- 
 
 <!--Hello there, I'm Matthias, I'm really happy to be here tonight  and speak with you. Huge thanks to Sylvain and Sebastien for organising and EDF for having us here tonight. It's going to be tough to deliver a talk at the level of Emanuelle. As you can HEAR I am French, and to be honest right now my brain does not know which language to speak so if I go too fast, or start speaking French, don't hesitate to interrupt me. -->
 
@@ -37,22 +39,33 @@ Matthias Bussonnier – University of California, Berkeley Institute Data Scienc
 
 I've now been an IPython/Jupyter Developer for about 6 years.
 (got commit right, helped create the Notebok, Jupyter, NbConvert, Nbviewer... )
+<!-- .element: class="fragment" data-fragment-index="1" -->
 
 -- 
 
 <!-- There was one particularly important part in what I said earlier, which is not trivial, and is one of the key that makes IPython (and Python) a popular language : -->
 
 Explore.
+<!-- .element: class="fragment" data-fragment-index="1" -->
 
-<!-- You see if you look at the spectrum of what we can call "Programming", one one hand you have Elliot Alderson right (Mr Robot for those not following) that's the "Standard Sofware Engeniering", you are a point A, you know you want  (or are told) to go to point B, you know all that's in between, or have little to no chance to try quickly your program on eisting data. That's mostly what "traditional" IDE are good for. Create medium to large projects with a known end goal, unit test...etc -->
+-- 
+
+<!-- You see if you look at the spectrum of what we can call "Programming", one one hand you have Elliot Alderson right (Mr Robot for those not following) that's the "Standard Sofware Engeniering", you are a point A, you know you want  (or are told) to go to point B, you know all that's in between, or have little to no chance to try quickly your program on existing data. That's mostly what "traditional" IDE are good for. Create medium to large projects with a known end goal, unit test...etc -->
 
 <!-- On the other end of the spectrum you have exploratory programming. Programming is not an end-goal, it's a tool to explore data, it's there to empower the user at the keyboard to multiply their ability. The users have often extremely deep domain specific knowlege, which is required to work this problem, and may not know everythong about Time complexity or even API, and most often they need to see the result of step N to decide what step N+1 should be (or what step N-1) should have been. I like to think of this end as Your (or My) Grand Mother, you've shown her how to mail to you pictures she took,  to print pictures of Cat she found on the internet and she ends up printing cat images and take pictures of them to mail them to you. If it works its not dumb.  -->
 
 <!-- IPython focus a lot on the exploratory part -->
 
-I in IPython is for interactive and it's not lower case I <!--,we don't charge $999, though I'm pretty sure there are plugins for Animoji, and Facerecognition look at Sylvain, Martin and widgets-->, 
+I in IPython is for interactive and it's not lower case I 
+
+-- 
+<!--,we don't charge $999, though I'm pretty sure there are plugins for Animoji, and Face recognition look at Sylvain, Martin and widgets--> 
 <!-- So let's have a look at some of the features of IPython -->
 
+
+DEMO
+
+-- 
 <!-- start terminal --> 
 
 <!--
@@ -67,25 +80,298 @@ I in IPython is for interactive and it's not lower case I <!--,we don't charge $
     item = choice(['hello', 0])
     item.
 --> 
-And that's where IPython/Jupyter starts to differentiate from "Classic" IDE
+Interactive first is where IPython/Jupyter starts to differentiate from "Classic" IDE
+
+-- 
 
 <!-- 
-Shell esape
+So now of course, this is only where we start the process of Interactive fist, let's opena a notebook (connected to the same Pytho  environement)
+And explore a bit how we push interactivity.
+
 -->
-    
-load_ext rpy2.ipython
-%%R 1+1
-array([ 2.])
-
-
-## Ast nodes interactivity
-
-## disp and Update Display
 
 ## Things to come
 
+-- 
+
 Async All the things !
-Unless you've been living under a rock, you may have heard about `async` and `await` (not be be confused with AsyncIO)
+
+<!-- 
+Unless you've been living under a rock, you may have heard about `async` and `await` (not be be confused with AsyncIO), while asyncio is one opinonated implemetation of an async library there are a couple of others, curio, and trio are 2 that take a radically different approach (and API), whic you can find a few (uvloop) which keep compatibility with asyncio but attempt to be faster. 
+
+
+
+There are likely many of you in here that have more experience than me with async programming. I can't ... to be an expert. But let me give a quick metaphore of sync/vs async. 
+
+Think about a restrant, with customers comming in and out (after paying of course), sitting at a table, reading the menu, ordering, eating... etc.
+
+We'll try timagine this situation from a waiter perspective; in a perfect Synchronous world, were the next customer only arrives once the previous one has left you want to:
+
+-->
+
+-- 
+
+An example:
+
+
+  - greet() the customer
+  <!-- .element: class="fragment" data-fragment-index="0" -->
+  - move() them to their table.  
+  <!-- .element: class="fragment" data-fragment-index="1" -->
+  - take_order() of their order.
+  <!-- .element: class="fragment" data-fragment-index="2" -->
+  - order_kitchen() the food from the chef, 
+  <!-- .element: class="fragment" data-fragment-index="3" -->
+  - bring_food() the order back...
+  <!-- .element: class="fragment" data-fragment-index="4" -->
+  - bill() ...and tip
+  <!-- .element: class="fragment" data-fragment-index="5" -->
+  - leave() customer out. 
+  <!-- .element: class="fragment" data-fragment-index="6" -->
+  - clean() table.
+  <!-- .element: class="fragment" data-fragment-index="7" -->
+
+... and take the next customer in...
+  <!-- .element: class="fragment" data-fragment-index="8" -->
+-- 
+
+<!--
+Now, if you have one customer at a time that's fine. But in a synchronous world you have to stay to your task. While the customer are reading the menu, or eating you have to stay with them...  which is less than optimal if you wish to have less than 1 waiter/table, you can use preemtive multi tasking `threads()`... but it might be quite impolite to leave while your customer is talking to you. Or cooperative scheduling, with explicit point "It's or to leave now. `await` and `async` are these, any async function says "during this function, I may (or may not) leave while you do not need me", the explicit points where the waiter may leave are `yields`, but that's not important for now. 
+
+The importnat part is that once the customers have their menu, the waiter may greet another one, clean the table...
+-->
+
+```
+greet()
+move()
+await take_order()
+await order_kitchen()
+bing_food()
+await bill()
+await leave()
+clean()
+```
+
+The waiter is our event loop, and we feed tasks to it. 
+
+-- 
+
+Asyncio look like that:
+
+```
+import asyncio
+import aiohttp
+loop = asyncio.get_event_loop()
+async def main():
+    response = await aiohttp.get('https://api.github.com')
+    return await response.json()
+data = loop.run_until_complete(main())
+data
+```
+```
+{'authorizations_url': 'https://api.github.com/authorizations',
+ 'code_se
+ ...
+```
+
+-- 
+
+## In the REPL
+
+<!-- Now if you've forgotten an `await` after the return, you may be greated with `<generator object ClientResponse.json at 0x00000000>`, which you need to `loop.run_until_complete(...)` once more ... 
+
+This is less than ideal as 1) you have a lot to type, 2) that's not what you'll end up with in your final code, and 3) the exact incantations depends on the IO library you use. Would it be great if you could: 
+
+```
+rsponse = await aiohttp.get('https://api.github.com')
+await data.json()
+```
+
+And have the REPL take care of the rest ?
+
+-->
+```
+In[1]: response = await aiohttp.get('https://api.github.com')
+```
+
+
+```
+  File "<ipython-input-20-4170cb01b36e>", line 1
+    response = await aiohttp.get('http://localhost:8888/api.contens')
+                           ^
+SyntaxError: invalid syntax
+```
+
+:-( 
+
+-- 
+
+
+
+let's fix that ! Or at lest try quick overview:
+
+- wrap code in `async def ___wrapper___()`
+- Turn it to ast. 
+  - rename function to be invalid identifier.
+  - make sure the function returns its last expression/value
+- compile it.
+- Extract function code object
+- Clone and change flags to not create a new local scope
+- `exec()`it (return a coroutine)
+- process the coroutine in the right loop.
+
+-- 
+
+```
+our_code = """import aiohttp
+response = await aiohttp.get('http://localhost:8888/api.contens')
+response
+"""
+```
+
+--
+
+# all the following is "simplified"
+
+(and not finished, need to be reviewed, merged, beta-tested, and released)
+-- 
+
+## Wrap our code in async
+  
+```
+from textwrap import dedent, indent
+def _asyncify(code:str) -> str:
+    """wrap code in async def definition.
+
+    And setup a bit of context to run it later.
+    """
+    res = dedent("""
+        async def ___wrapper___():
+            {usercode}
+            locals()
+            return None
+        """).format(usercode=indent(code,' '*4)[4:])
+    return res
+```
+
+-- 
+
+## rewrite AST
+
+```
+import ast
+from ast import Expr, Await, Return
+
+def _ast_asyncify(cell):
+    tree = ast.parse(_asyncify(cell))
+    function_def = tree.body[0]
+    function_def.name = 'async-def-wrapper'
+    lastexpr = function_def.body[-3]
+    if isinstance(lastexpr, (Expr, Await)):
+        del function_def.body[-3]
+        function_def.body[-1] = Return(lastexpr.value)
+    ast.fix_missing_locations(tree)
+    return tree
+```
+-- 
+
+## Now we have:
+
+```
+def async-def-wrapper():   # not a valid Python identifier
+    # new scope created
+    import aiohttp
+    response = await aiohttp.get('http://localhost:8888/api.contens')
+    # update locals "dict".
+    locals() 
+    return response # return the last expression.
+```
+
+-- 
+
+## get he code from out async `__wrapper__` and compile it, get the code object
+
+```
+code_ast = _ast_asyncify(our_code)
+async_wrapper_code = compile(code_ast, 'cell_name', 'exec')
+
+g = {}
+l = {}
+exec(async_wrapper_code, g, l )
+code_object = l['async-def-wrapper']
+```
+
+-- 
+
+
+`Code_object` is now:
+```
+# new scope created
+import aiohttp
+response = await aiohttp.get('http://localhost:8888/api.contens')
+# update locals "dict".
+locals() 
+return response # return the last expression.
+```
+
+No function !
+
+-- 
+
+## remove new scope creation
+
+```
+def removed_co_newlocals(function):
+    from types import CodeType, FunctionType
+    CO_NEWLOCALS = 0x0002
+    code = function.__code__
+    new_code = CodeType(
+        code.co_argcount, 
+        code.co_kwonlyargcount,
+        code.co_nlocals, 
+        code.co_stacksize, 
+        code.co_flags & ~CO_NEWLOCALS, ### <<<< There 
+        code.co_code, 
+        code.co_consts,
+        code.co_names, 
+        code.co_varnames, 
+        code.co_filename, 
+        code.co_name, 
+        code.co_firstlineno, 
+        code.co_lnotab, 
+        code.co_freevars, 
+        code.co_cellvars
+    )
+    return FunctionType(new_code, globals(), function.__name__, function.__defaults__)
+
+```
+-- 
+
+```
+async_code = removed_co_newlocals(code_object).__code__
+```
+
+-- 
+
+## .... and execute
+
+```
+
+loop_runner = asyncio.get_event_loop().run_until_complete
+coro = eval(async_code, {})
+loop_runner(coro)
+```
+-- 
+
+## wrap that up in to be "Magic" ....
+
+DEMO
+
+
+-- 
+Thanks
+
+(https://github.com/carreau/talks/)
 
     
     
