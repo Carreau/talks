@@ -247,7 +247,11 @@ LIGO gravitaional wave detection:
 - Executable online (with subset of data) http://beta.mybinder.org/repo/losc-tutorial/quickview
 (https://losc.ligo.org/tutorials/)
 
-Pangeo 
+- Pangeo Deployments.
+- Cern's SWAN
+
+
+- http://jupyterhub.readthedocs.io/en/latest/gallery-jhub-deployments.html
 
 
 
