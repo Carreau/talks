@@ -59,7 +59,7 @@ dissertation to work on a small project: IPython
 --> 
 
 - 2001: Fernando Perez 
-  - Can replace bunch of C/C++/Make/perl script with Python
+  - Can replace bunch of C/C++/Make/Perl script with Python
   - Python REPL is pretty basic for **Interactive** use. 
 - Create IPython for Interactive Python.
   - prompt numbers. 
@@ -78,7 +78,7 @@ dissertation to work on a small project: IPython
   - Try add-hoc solution in a loop. 
   - Update self-understanding of problem
   - repeat. 
-  - Human Time greater than CPU 
+  - Human time greater than CPU 
 
 -- 
 
@@ -93,34 +93,37 @@ dissertation to work on a small project: IPython
 ## Exploratory programming
 
 IPython was **designed** for exploratory programming, as a **REPL** (Read Eval
-Print Loop) and grew popular, especially among Scientist who loved it to explore
-**data**. 
+Print Loop) and grew popular, especially among scientist who loved it to **explore**. 
 
 > IPython have weaponized the tab key
 
 >   – Fernando Pérez
 
----- 
+-- 
 
 # Birth of the notebook 
 
 (Fast forward 2012)
 
-Decision to refactor IPython to make it "network enabled", originally with a
-QT-based frontend to to have inline images.
+Decision to refactor IPython to make it "network enabled".
 
-At that time the web technologies were mature enough that the "Notebook"
-frontend was a possibility (websocket, Javascript V8 JIT). 
+- Mature web technologies made it _possible_ and _attractive_
+<!-- At that time the web technologies were mature enough that the "Notebook"
+frontend was a possibility (websocket, Javascript V8 JIT).  -->
 
-Let's "Leverage" all of the web stack for display while keeping, the Python
-backed for heavy lifting.
+<!-- Let's "Leverage" all of the web stack for display while keeping, the Python
+backed for heavy lifting. -->
 
 -- 
 
 ## Multi Language
 
 The "Protocol" spoken over the network can be implemented by many languages not
-just Python. So we renamed the Python-Agnostic part to Jupyter.
+just Python. 
+
+2013 - In about week we got a prototype of **Julia** kernel. 
+
+2014 - we renamed the Python-Agnostic part to Jupyter.
 
 ---- 
 
@@ -137,7 +140,7 @@ Mainly known for **The Notebook**
 (Highly overloaded term)
 
 - Web server (often local), with a web application that load `.ipynb` documents
-  (json), that con contain both code, narrative _and_ results.
+  (json), that con contain both code, narrative (includes Math rendering) _and_ results.
 - Attached to a Kernel (often local) doing heavy computation.
 - Results can be: 
    - Static (Image)
@@ -151,7 +154,9 @@ A couple of Days ago/ Soon should be release JupyterLab:
 
 ![](lab-header-preview.png)
 
-Extends the notebook interface with Text editor, shell, ...etc
+Extends the notebook interface with text editor, shell, ...etc
+
+(is it and IDE ? If by `I` you mean Interactive, then yes). 
 
 
 -- 
@@ -162,9 +167,9 @@ Jupyter is also a set of **Protocols and Formats** that reduce the `N-frontends`
 
 - Open, Free and as simple as possible.
   - Json (almost) everywhere
-- Thought for Science use case. 
+- Thought for Science and Interactive use case. 
   - Results embedded in documents no "Copy past" mistake. 
-  - Can share a 20M hours computation result and view it on my laptop.
+  - Scale from Education to HPC jobs.
 
 -- 
 
@@ -184,7 +189,7 @@ Juno_...
 ## Interactivity 
 
 Coding is _not_ the full time Job of most of our users. A simple, single tool,
-no multi-window and no Command-Line looking interface helps.
+with friendly interface helps.
 
 Persisting kernel state allows to iterate only on _part_ of an analysis.
 
@@ -199,9 +204,15 @@ linearity of a script with intermediate result. Aka "Literate Computing"
 Computation, and visualisation/narrative/result are in different processes.
 
  - Robust to crashes
- - Can "Share" and analysis / notebook without having to "rerun" the code. And
-   more trustworthy (No copy-past issues).
+ - Can "Share" and analysis / notebook without having to "rerun" the all code.
+   And more trustworthy (No copy-past issues).
 
+Cons:
+
+ - Understanding that document/kernel can have different states can be challenging.
+
+
+-- 
 
 ## Network enabled / web based
 
@@ -212,7 +223,21 @@ Seamless transition to HPC: `Kernel Menu` > `Restart on Cluster`
 
 Document persist if code crash.
 
-Can be Zero-Installation.
+Can be Zero-Installation (See JupyterHub).
+
+-- 
+
+## JupyterHub 
+
+![](hublogo.png)
+
+-- 
+
+![](jhub-parts.png)
+
+ - Each user can get their own process/version(s)/configuration(s)
+ - Hooks into any Auth
+ - Only requires a browser
 
 
 ---- 
@@ -232,23 +257,47 @@ AKA "Fit in memory", run on your laptop.
 
 # HPC
 
+## Batch Jobs
+
+You can run notebook in a headless manner... but not the best usecase
+
 ## Interactive Cluster. 
 
-- Run notebook server on a Head node, 
-- Run 
+- Run a Hub (hook into LDAP/PAM...)
+- Run notebook server on a Head node
+- Run Kernels on head Node/fast queue
+- Workers on Batch queue/cluster.
 
--- 
+----
 
 # Example of Famous notebook workflow. 
 
-LIGO gravitaional wave detection: 
+-- 
 
-- Static view: https://losc.ligo.org/s/events/GW150914/GW150914_tutorial.html
-- Executable online (with subset of data) http://beta.mybinder.org/repo/losc-tutorial/quickview
-(https://losc.ligo.org/tutorials/)
+## LIGO gravitaional wave 
 
-- Pangeo Deployments.
-- Cern's SWAN
+![](ligo-1.png)
+
+
+- Binder (data subset): https://github.com/minrk/ligo-binder
+
+-- 
+
+## Pangeo
+
+(GeoScience in the cloud)
+
+![](pangeo-1.png)
+
+- [JupyterHub, Dask, and XArray on the Cloud](https://pangeo-data.github.io/work/2018/01/25/cloud-deployment/)
+- [http://pangeo.pydata.org/](http://pangeo.pydata.org/)
+-- 
+
+## Cern's SWAN
+
+![SWAN](swan-screen.png)
+
+[https://swan.web.cern.ch/](https://swan.web.cern.ch/)
 
 
 - http://jupyterhub.readthedocs.io/en/latest/gallery-jhub-deployments.html
