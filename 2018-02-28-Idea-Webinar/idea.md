@@ -2,7 +2,7 @@
 title: Jupyter in HPC
 separator: \n---- ?\n
 verticalSeparator: \n-- ?\n
-theme: jupyter
+theme: theme/jupyter.css
 highlightTheme : darcula
 revealOptions:
     transition: 'slide'

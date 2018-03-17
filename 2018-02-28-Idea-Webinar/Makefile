@@ -1,10 +1,11 @@
-
+object = idea.md
 
 build:
 	mkdir -p docs/theme/
-	reveal-md *.md --static docs
+	reveal-md $(object) --static docs
 	cp -r theme/* docs/theme/
 	#cp *.png *.jpg docs/
 watch: build
-	reveal-md -w *.md 
-
+	reveal-md -w $(object) 
+pdf: 
+	reveal-md $(object) --print slides.pdf
