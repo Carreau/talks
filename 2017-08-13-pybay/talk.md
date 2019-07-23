@@ -402,7 +402,7 @@ Python 2, or the error message and the  `requires_python` works (almost)
 seamlessly. 
 
 Number of Complaints : 2
-  - 1 during RC phase `python setup.py install` did pull the --pre on Google
+  - 1 during RC phase `python pip install .` did pull the --pre on Google
     Fire CI. 
   - 1 request to clarify a message.
   - I don't count twitter / reddit/ HN but haters were few.

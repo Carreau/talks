@@ -474,7 +474,7 @@ and above is required.
 
 Two. 
 
-- During RC: `python setup.py install` got 6.0 on Python 2
+- During RC: `python pip install .` got 6.0 on Python 2
 
 Remember: don't use `python setup.py`!
 
