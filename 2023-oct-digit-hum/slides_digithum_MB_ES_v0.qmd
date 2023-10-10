@@ -1,0 +1,333 @@
+---
+title: "Python & SHS"
+subtitle: "Quelle place pour la programmation scientifique ?"
+author: "Émilien Schultz & Matthias Bussonnier"
+format: 
+    revealjs:
+        incremental: false
+        footer: "Digit_Hum 2023"
+        slide-number: true
+
+---
+
+
+## Une double articulation
+
+:::: {.columns}
+
+::: {.column width="50%"}
+**Matthias**
+
+- D'abord en biophysique
+- Puis entre les mondes
+- Et développeur
+    - open source
+    - open science
+
+:::
+
+::: {.column width="50%"}
+**Émilien**
+
+- D'abord en physique
+- Puis en sociologie
+- Finalement en sciences sociales computationnelles
+
+:::
+
+::::
+
+
+**Objectif** : nourrir la discussion de nos expériences ... sans se limiter à Python
+
+## Répondre à 3 questions 
+
+<br><br>
+<center>
+1. Pourquoi programmer ?
+2. Pourquoi Python ?
+3. Comment s'y mettre ?
+</center>
+
+# Programmer ?
+
+## Numérisation de la recherche
+
+- Les ordinateurs sont partout
+- Et cela concerne aussi les SHS
+    - "*l’historien de demain sera programmeur ou ne sera plus*" (Emmanuel Le Roy Ladurie, 1968)
+- Cependant, variation des usages
+    - ["*De la poussière à la lumière bleue*" de Caroline Muller et Frédéric Clavert, Signata, 2021](https://journals.openedition.org/signata/3136)
+    - ["Pratiques et usages des outils numériques dans les communautés scientifiques en France", Mariannig Le Béchec et al., 2020](https://hal-lara.archives-ouvertes.fr/hal-03545512) 
+
+
+## La "programmation scientifique"
+
+**Programmer en recherche $\neq$ développer un logiciel**
+
+![](img/prog_sci_dev.png){fig-align="center"}
+
+::: {style="font-size: 50%;"}
+« in contrast to software engineering, there is no externally speciﬁed goal or design target. Instead, the user explores and discovers their goal as they gain understanding from iteratively executing the code and thinking about the results and their data. » (Granger et Perez, 2021) 
+:::
+
+## R, Python et les autres ...
+
+Font partie des instruments de la recherche
+
+
+
+![](img/software_in_science.png){fig-align="center"}
+
+::: {style="font-size: 50%;"}
+Schindler D, Bensmann F, Dietze S, et al. (2022) The role of software in science: a knowledge graph-based analysis of software mentions in PubMed Central. PeerJ Computer Science 8: 1–47. DOI: 10.7717/PEERJ-CS.835.
+:::
+
+## Pourquoi programmer en recherche ?
+
+- Différentes raisons d'utilisation :
+    - flexibilité de la commande à l'ordinateur
+    - formalisation des traitements
+    - construire des outils
+- Favorise :
+    - travail collaboratif
+    - transfert de pratiques
+    - reproductibilité
+
+## Vers la reproductibilité {.smaller}
+
+![](img/reproductibility.png){fig-align="center" fig-alt="10.5281/zenodo.4421040"}
+
+Juliette Taka, & Nicolas M. Thiéry. (2018). Publishing reproducible logbooks explainer comic strip. Zenodo. https://doi.org/10.5281/zenodo.4421040
+
+
+
+## Particularité des SHS ?
+
+
+:::: {.columns}
+
+::: {.column width="45%"}
+
+- Des communautés très computationnelles
+    - Humanités numériques
+    - Géographie
+- D'autres beaucoup moins
+- Des données très diverses
+
+:::
+
+::: {.column width="55%"}
+
+![](img/reseau_logiciels_shs.png)
+
+:::
+
+::::
+
+# Python ?
+
+##
+
+![](img/python.png){fig-align="center" fig-alt="https://xkcd.com/353/"}
+
+
+## Un peu d'histoire
+
+- Langage "glue" développé par Guido von Rossum en 1988
+- Langage de haut niveau
+    - Interprété ; Ouvert
+    - Pédagogique ; Versatil
+- Qui a évolué : actuellement 3.11
+- Le plus utilisé en traitement des données
+    - [Sondage stackoverflow](https://survey.stackoverflow.co/2023/#technology-most-popular-technologies) ; [TIOBE index](https://www.tiobe.com/tiobe-index/)
+    - Lingua franca, "language of first resort"
+
+## "Scientific Python", quand l'open source rencontre l'open science {.smaller}
+
+
+:::: {.columns}
+
+
+::: {.column width="40%"}
+
+« *The reason why I wanted to do it in Python is because I was using a proprietary tool for my work, but I wanted to do my scientific work with open tools. I think of science’s mission as opening the black box of nature. It's a bit nonsensical to do that with tools that we are not allowed to open and understand, including proprietary software* » (Fernando Perez, [As Project Jupyter celebrates 20 years...](https://data.berkeley.edu/news/project-jupyter-celebrates-20-years-fernando-perez-reflects-how-it-started-open-sciences) 2021)
+
+:::
+
+::: {.column width="60%"}
+
+![](img/scipy2002.png)
+
+:::
+::::
+
+## Des outils pour les chercheurs
+
+![](img/python-stack.png)
+
+
+## Un outil "normal" de la science
+
+![](img/scipy_article.png)
+
+
+## Une frontière d'échanges entre recherche et open source
+
+- Petite histoire de IPython
+    - Des outils dédiés à l'interactivité de la recherche
+    - A la base des notebooks Jupyter
+- Vue par un de ses acteurs (M.B.)
+    - Des outils par et pour les chercheurs
+
+
+## Python dopé à la data science
+
+Entre les mondes scientifiques et de l'ingénierie des données.
+
+![](img/spacy.png){fig-align="center"}
+
+
+## Python, Julia, R ?
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+- Des langages qui ont évolués
+    - et qui évoluent (ex de la [modification du Global Interpreter Lock (GIL)](https://superfastpython.com/gil-removed-from-python/))
+- Une montée progressive en abstraction (cas du projet Jupyter)
+- Pas de "meilleur langage dans l'absolu"
+
+:::
+
+::: {.column width="50%"}
+
+![](img/pythonversion.png)
+
+:::
+
+::::
+
+# Python pour les SHS ?
+
+## Pas un unique usage
+
+- De la culture numérique des possibles
+- ... à sa mise en oeuvre
+
+Importance d'avoir une idée de ce qu'il est possible de faire
+
+Série d'exemples d'usages - **à compléter**
+
+::: aside
+"Certains disent « Il faut coder », d’autres rétorquent « Il faut décoder » (Cardon, 2019)"
+:::
+
+## Usages "orienté mimétisme"
+
+
+
+- Suivre un tutoriel
+    - ["Whisper pour retranscrire des entretiens", Yacine Chitour](https://www.css.cnrs.fr/whisper-pour-retranscrire-des-entretiens/) 
+- Utiliser une ligne de commande pour lancer une collecte de données avec un outil dédié
+    - feu Twark pour Twitter
+- Lancer le code d’un notebook existant avec des modifications mineures
+
+```{.python}
+import scripttoutfait
+scripttoutfait.run()
+```
+
+## Usages "orienté scripts"
+
+- Manipuler des données
+    - Découper un fichier trop volumineux
+- Transformer des données
+    - pour Iramuteq ou pour l’analyse de réseaux (mise en forme de corpus)
+- Automatiser des tâches
+    - Conversion pdf > textes
+
+- Script dans logiciel
+    QGIS ou dans OpenRefine
+
+## Usages "orienté statistiques"
+
+- Construire un graphique
+    - Juxtaposition de plusieurs éléments temporels
+- Faire des statistiques
+    - Notebook permettant l’exploration statistique des données d’une enquête en ligne
+- Exploration de textes
+    - Bibliothèques de TAL pour analyse thématique
+
+## Usages "orienté automatisation"
+
+- Systématiser des collectes API
+    - OCR Gallica, forums, ...
+- Surveillance d'événements
+    - modifications d’un site
+- Workflow exécutable
+    - Ensemble des étapes collecte/analyse/résultats
+- Déployer un site web en Python
+
+## Usages "IA"
+
+- Manipuler les modèles
+    -   Possibilités ouvertes par HuggingFace & co
+- Entraîner des modèles
+    - Détection d'entitées nommées à façon
+- Fine tuner des LLM
+
+## Usages "orientés construction d'instruments"
+
+- Généraliser son code en fonction réxécutable
+- Publier une bibliothèque
+- Déployer un service en ligne
+
+## Usages "orientés logiciel"
+
+- Développer une bibliothèque dédiée générique (Ipysigma)
+- Développer un module pour un logiciel (QGIS?)
+
+
+# S'y mettre ?
+
+## Tous programmeurs ?
+
+- Non
+    - Et pas nécessairement en Python
+- Mais une culture numérique devient indispensable
+- Et cela facilite les échanges
+
+## Identifier des usages possibles
+
+- Usages discrets : automatiser, une analyse parmi d'autres
+- À mettre en balance temps/résultats
+- Solliciter les collègues compétents (support recherche)
+- Chercher les rétroactions positives
+    - Partager avec les autres
+    - Boucle vertueuse de l'open source
+
+## Les ressources
+
+- Priorité aux pairs & collègue de bureau
+- [Programming Historian](https://programminghistorian.org/)
+- Software Carpentry et [Data Carpentry](https://datacarpentry.org/)
+- [Cours Python pour la data science de Lino Galiana (INSEE)](https://pythonds.linogaliana.fr/)
+- [Manuel Python pour les SHS, 2021](https://pyshs.fr/)
+
+
+# Pour ouvrir...
+
+## Python comme un avatar de la programmation scientifique
+
+- Mieux comprendre les complémentarités entre langages
+- Développer un vocabulaire commun pour en/se parler
+
+## Le futur : LLM & code
+
+- Génération facilité de code
+- Passage du NL au code accéléré
+- MAIS
+    - en pratique surtout modifier du code
+    - et il faut être capable de le comprendre
