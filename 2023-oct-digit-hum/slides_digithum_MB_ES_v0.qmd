@@ -16,15 +16,6 @@ format:
 :::: {.columns}
 
 ::: {.column width="50%"}
-**Matthias**
-
-- D'abord en biophysique
-- Puis entre les mondes
-- Et développeur
-    - open source
-    - open science
-
-:::
 
 ::: {.column width="50%"}
 **Émilien**
@@ -32,6 +23,17 @@ format:
 - D'abord en physique
 - Puis en sociologie
 - Finalement en sciences sociales computationnelles
+
+
+:::
+
+**Matthias**
+
+- (Bio)physique experimental
+- Migration Progressives vers Programmeur
+- Et développeur
+    - open source
+    - open science
 
 :::
 
