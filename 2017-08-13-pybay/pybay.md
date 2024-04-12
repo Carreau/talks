@@ -269,8 +269,6 @@ As Raymond Hettinger would say if he is in the room
 
 # The new way: Python-Requires
 
-#### (Aka: make packaging great again)
-
 -- 
 
 <!--# (re)-Introducting `python_requires`-->
