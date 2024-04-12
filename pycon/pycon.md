@@ -69,7 +69,7 @@ Our talk applies to stopping support for any version (e.g., 2.6 or 3.3).
 
 # Python 3 Statement
 
-[www.python3statement.org](http://www.python3statement.org/)
+[python3statement.github.io](http://python3statement.github.io/)
 
 List of who is stopping Python 2 support when. 
 Resources on how to stop support with minimal frustration for users

@@ -291,7 +291,7 @@ Invoking `setup.py` directly will not respect the `reauires_python`
 
 Just a reminder that you can use multiline error messages.  
 
-   http://www.python3statement.org/practicalities/
+   http://python3statement.github.io/practicalities/
 
 Should have all the necessary informations, and examples of how to do each of
 these in a good way.
@@ -319,7 +319,7 @@ So you **can** make a release of a library that will
 
 ## The old pep
 
-Pep 345 [specifies](https://www.python.org/dev/peps/pep-0345/#requires-python)
+Pep 345 [specifies](https://python3statement.github.io/dev/peps/pep-0345/#requires-python)
 
     Requires-Python
     ===============
