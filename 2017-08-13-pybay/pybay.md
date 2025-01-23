@@ -41,7 +41,7 @@ Post Doc, IPython and Jupyter Core Dev
 
 <img src='affiliation.png' style='max-height:45vh'>
 
-GitHub : [@Carreau](https://github.com/carreau)  – Twitter : [@mbussonn](https://twitter.com/mbussonn)
+GitHub : [@Carreau](https://github.com/carreau) 
 
 
 -- 
@@ -379,7 +379,7 @@ Some helpful principles to keep your users as happy as possible
 
 1. Update your documentation, CIs, and scripts to use `pip`.
 
-2. Communicate, Communicate, Communicate: Blog, twitter...
+2. Communicate, Communicate, Communicate: Blog...
 
    <!-- .element: class="fragment" data-fragment-index="1" -->
 

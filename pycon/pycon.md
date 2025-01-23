@@ -23,9 +23,6 @@ Slides available at http://bit.ly/pycon2017-build-bridges
 We have been working on the IPython and Jupyter projects for 
 5 and ~1 year. 
 
-github:@Carreau/twitter:@Mbussonn
-
-github:@mpacer/twitter:@mdpacer
 
 --
 
